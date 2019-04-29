@@ -1,0 +1,4 @@
+﻿  BookBST.cpp
+c:\users\sam\source\repos\biblebst\biblebst\bookbst.cpp(60): warning C4018: '<': signed/unsigned mismatch
+c:\users\sam\source\repos\biblebst\biblebst\bookbst.cpp(83): warning C4018: '<': signed/unsigned mismatch
+  BibleBST.vcxproj -> C:\Users\Sam\source\repos\BibleBST\Debug\BibleBST.exe
