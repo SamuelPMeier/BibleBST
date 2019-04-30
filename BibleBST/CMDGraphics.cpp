@@ -14,63 +14,67 @@ graphics::graphics(HDC disp, COLORREF col) {
 }
 
 void graphics::line(int x1, int y1, int x2, int y2) {
-   double delta;
-   int a1, a2, b1, b2, di = 1;
-   bool b;
-
-
-   if (y1 > y2)
-      swap(&y1, &y2);
-
-   double dx = abs(x2 - x1);
-   double dy = abs(y2 - y1);
-
-   if (dy < 0) {
-      dy = -dy;
-      di = -1;
-   }
-
-   if (dx < 0) {
-      dx = -dx;
-      di = -1;
-   }
-
-   if (dy < dx) {
-      if (x1 > x2) {
-         swap(&x1, &x2);
-         swap(&y1, &y2);
-      }
-
-      a1 = y1;
-      a2 = y2;
-      b1 = x1;
-      b2 = x2;
-      b = true;
+   if (abs(y2 - y1) < abs(x2 - x1)) {
+      if (x1 > x2)
+         lineLow(x2, y2, x1, y1);
+      else
+         lineLow(x1, y1, x2, y2);
    }
    else {
-      if (y1 > y2) {
-         swap(&x1, &x2);
-         swap(&y1, &y2);
-      }
+      if (y1 > y2)
+         lineHigh(x2, y2, x1, y1);
+      else
+         lineHigh(x1, y1, x2, y2);
+   }
+}
 
-      a1 = x1;
-      a2 = x2;
-      b1 = y1;
-      b2 = y2;
-      b = false;
+void graphics::lineHigh(int x1, int y1, int x2, int y2) {
+   int dx = x2 - x1;
+   int dy = y2 - y1;
+
+   int di = 1;
+
+   if (dx < 0) {
+      di = -1;
+      dx = -dx;
    }
 
-   delta = 2*dx-dy;
+   int delta = 2*dx - dy;
+   int x = x1, y = y1;
 
-   for (; a1 <= a2; a1++) {
-      point(b?b1:a1, b?a1:b1);
+   for (; y < y2; y++) {
+      point(x, y);
 
       if (delta > 0) {
-         b ? a1 : b1 += di;
-         delta -= 2*b?dx:dy;
+         x += di;
+         delta -= 2*dy;
       }
+      delta += 2*dx;
+   }
+}
 
-      delta += 2*b?dy:dx;
+void graphics::lineLow(int x1, int y1, int x2, int y2) {
+   int dx = x2 - x1;
+   int dy = y2 - y1;
+
+   int di = 1;
+
+   if (dy < 0) {
+      di = -1;
+      dy = -dy;
+   }
+   
+   int delta = 2*dy - dx;
+   int x = x1, y = y1;
+
+   for (; x < x2; x++) {
+      point(x, y);
+
+      if (delta > 0) {
+         y += di;
+         delta -= 2*dx;
+      }
+      delta += 2*dy;
    }
 }
 
