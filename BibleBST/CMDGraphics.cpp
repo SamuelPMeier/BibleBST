@@ -14,26 +14,63 @@ graphics::graphics(HDC disp, COLORREF col) {
 }
 
 void graphics::line(int x1, int y1, int x2, int y2) {
-   double dErr, error = 0;
-   int y = y1;
+   double delta;
+   int a1, a2, b1, b2, di = 1;
+   bool b;
 
-   if (x1 > x2)
-      swap(&x1, &x2);
+
    if (y1 > y2)
       swap(&y1, &y2);
 
-   double dx = x2 - x1;
-   double dy = y2 - y1;
+   double dx = abs(x2 - x1);
+   double dy = abs(y2 - y1);
 
-   dErr = dx ? abs(dy/dx) : 0;
+   if (dy < 0) {
+      dy = -dy;
+      di = -1;
+   }
 
-   for (int x = x1; x <= x2; x++) {
-      point(x, y);
-      error += dErr;
-      if (error >= 0.5) {
-         y += ((int)dy);
-         error -= 1;
+   if (dx < 0) {
+      dx = -dx;
+      di = -1;
+   }
+
+   if (dy < dx) {
+      if (x1 > x2) {
+         swap(&x1, &x2);
+         swap(&y1, &y2);
       }
+
+      a1 = y1;
+      a2 = y2;
+      b1 = x1;
+      b2 = x2;
+      b = true;
+   }
+   else {
+      if (y1 > y2) {
+         swap(&x1, &x2);
+         swap(&y1, &y2);
+      }
+
+      a1 = x1;
+      a2 = x2;
+      b1 = y1;
+      b2 = y2;
+      b = false;
+   }
+
+   delta = 2*dx-dy;
+
+   for (; a1 <= a2; a1++) {
+      point(b?b1:a1, b?a1:b1);
+
+      if (delta > 0) {
+         b ? a1 : b1 += di;
+         delta -= 2*b?dx:dy;
+      }
+
+      delta += 2*b?dy:dx;
    }
 }
 

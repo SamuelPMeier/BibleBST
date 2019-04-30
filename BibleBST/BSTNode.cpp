@@ -29,7 +29,7 @@ void BSTNode::add(std::string w, std::string *citation, int l) {
    if (!val) {
       
       // only add citation if it is new, prevents duplicates from citations
-      // two of the same word.
+      // with two of the same word.
       if (citations.at(citations.size()-1) != citation)
          citations.push_back(citation);
 
@@ -40,7 +40,7 @@ void BSTNode::add(std::string w, std::string *citation, int l) {
          lesser->add(w, citation, level);
       }
       else {
-         lesser = new BSTNode(w, citation, l);
+         lesser = new BSTNode(w, citation, level);
       }
    }
    else {
@@ -48,7 +48,7 @@ void BSTNode::add(std::string w, std::string *citation, int l) {
          greater->add(w, citation, level);
       }
       else {
-         greater = new BSTNode(w, citation, l);
+         greater = new BSTNode(w, citation, level);
       }
    }
 }
