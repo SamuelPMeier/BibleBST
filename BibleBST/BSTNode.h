@@ -30,4 +30,6 @@ public:
    int getLvl() { return level; }
    int getMaxLvl() { return maxLvl; }
    std::vector<int> getNumInLvls() { return numInLvls; }
+   BSTNode* getLeft() { return lesser; }
+   BSTNode* getRight() { return greater; }
 };

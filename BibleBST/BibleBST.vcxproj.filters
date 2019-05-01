@@ -24,12 +24,21 @@
     <ClCompile Include="CMDGraphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DrawBST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BSTNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CMDGraphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawBST.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

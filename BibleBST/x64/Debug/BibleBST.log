@@ -1,2 +1,4 @@
-﻿  BookBST.cpp
+﻿  DrawBST.cpp
+e:\documents\programming_stuff\c++\biblebst\biblebst\drawbst.cpp(18): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+e:\documents\programming_stuff\c++\biblebst\biblebst\drawbst.cpp(20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   BibleBST.vcxproj -> E:\Documents\Programming_stuff\C++\BibleBST\x64\Debug\BibleBST.exe

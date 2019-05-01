@@ -8,6 +8,11 @@ void swap(int * x, int * y) {
    *y = i;
 }
 
+graphics::graphics() {
+   output = GetDC(GetConsoleWindow());
+   color = RGB(MAX_VAL, MAX_VAL, MAX_VAL);
+}
+
 graphics::graphics(HDC disp, COLORREF col) {
    output = disp;
    color = col;
